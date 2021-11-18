@@ -1,0 +1,54 @@
+from typing import Optional
+
+'''
+Merge two sorted linked lists and return it as a sorted list.
+The list should be made by splicing together the nodes of the first two lists.
+The number of nodes in both lists is in the range [0, 50].
+-100 <= Node.val <= 100
+Both l1 and l2 are sorted in non-decreasing order.
+'''
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) \
+      -> Optional[ListNode]:
+        '''
+            Start with the list with the lowest element and iterate over that
+            one until the other has a lower element.
+            [val, next] -> [val, next] -> ...
+        '''
+        ret = ListNode()
+        last = ret
+        while l1 and l2:
+            if l1.val < l2.val:
+                last.next = l1
+                l1 = l1.next
+            else:
+                last.next = l2
+                l2 = l2.next
+
+            last = last.next
+
+        if l2:
+            last.next = l2
+            return ret.next
+        if l1:
+            last.next = l1
+            return ret.next
+
+
+if __name__ == '__main__':
+    list1 = [2, 7, 11, 15]
+    list2 = [2, 7, 11, 15]
+
+    solver = Solution()
+    sol = solver.mergeTwoLists(list1, list2)
+
+    print(sol)
