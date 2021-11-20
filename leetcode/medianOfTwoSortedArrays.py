@@ -77,7 +77,7 @@ class Solution:
             if med == 0:
                 # The next element is med
                 if mod == 0:                                # n+m is even
-                    if nums1[id1] < nums2[id2]:             
+                    if nums1[id1] < nums2[id2]:
                         return (last + nums1[id1])/2        # next is in num1
                     return (last + nums2[id2])/2            # next is in num2
                 else:
