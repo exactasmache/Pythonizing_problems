@@ -3,22 +3,23 @@ import insertionSort
 
 ls = None
 
+
 def main(_seed):
     print('Executing python default sorting algorithm')
-    print(sorted(list_gen(_seed)))
+    ls = list_gen(10, _seed=_seed)
+    print(sorted(ls))
 
     print('Executing sorting algorithm')
-    insertionSort.insertion_sort(list_gen(_seed))
+    ls = insertionSort.insertion_sort([e for e in list_gen(10, _seed=_seed)])
+    print(ls)
     return
 
 
-def list_gen(n=10, _seed=None):
+def list_gen(n, _seed=None):
     '''
     Function that returns a generator of a list.
     The returned list will be the same for each call.
     '''
-    print(n, _seed)
-    return []
     if _seed:
         seed(_seed)
     return (randint(-x, x) for x in range(n))
